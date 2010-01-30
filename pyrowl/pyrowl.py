@@ -57,7 +57,7 @@ takes 2 optional arguments:
 
     def providerkey(self, providerkey):
         "Sets the provider key (and check it has the good length)"
-        if type(providerkey) == str and len(providerkeey) == 40:
+        if type(providerkey) == str and len(providerkey) == 40:
             self._providerkey = providerkey
 
     def push(self, application="", event="", description="", priority=0, batch_mode=False):
