@@ -3,12 +3,12 @@ Pyrowl
 
 Pyrowl is a simple python module for the [Prowl][prowl] [API][Prowl API].
 
-[prowl]: http://prowl.weks.net/
-[Prowl API]: http://prowl.weks.net/api.php
+[prowl]: http://www.prowlapp.com/
+[Prowl API]: http://www.prowlapp.com/api.php
 
 [Prowl][prowl]
 ---------------
-Prowl is the Growl client for the iPhone OS. Notifications from your Mac or Windows computer are sent to your iPhone or iPod touch using push. Prowl has an extensive API, which allows your scripts to integrate beautifully. (source: http://prowl.weks.net/)
+Prowl is the Growl client for the iPhone OS. Notifications from your Mac or Windows computer are sent to your iPhone or iPod touch using push. Prowl has an extensive API, which allows your scripts to integrate beautifully. (source: http://www.prowlapp.com/)
 
 Pyrowl
 ------

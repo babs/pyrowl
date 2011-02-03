@@ -70,7 +70,7 @@ takes 5 arguments:
  - (opt) batch_mode:  call API 5 by 5 (def:False)
 
 Warning: using batch_mode will return error only if all API keys are bad
- cf: http://prowl.weks.net/api.php
+ cf: http://www.prowlapp.com/api.php
 """
         datas = {
             'application': application[:256],
