@@ -6,7 +6,7 @@ from urllib import urlencode
 
 __version__ = "0.1"
 
-API_SERVER = 'prowl.weks.net'
+API_SERVER = 'api.prowlapp.com'
 ADD_PATH   = '/publicapi/add'
 
 USER_AGENT="Pyrowl/v%s"%__version__
