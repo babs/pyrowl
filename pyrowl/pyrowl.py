@@ -60,12 +60,13 @@ takes 2 optional arguments:
         if type(providerkey) == str and len(providerkey) == 40:
             self._providerkey = providerkey
 
-    def push(self, application="", event="", description="", priority=0, batch_mode=False):
+    def push(self, application="", event="", description="", url="", priority=0, batch_mode=False):
         """Pushes a message on the registered API keys.
 takes 5 arguments:
  - (req) application: application name [256]
  - (req) event:       event name       [1024]
  - (req) secription:  description      [100000]
+ - (req) url:         url              [512]
  - (opt) priority:    from -2 (lowest) to 2 (highest) (def:0)
  - (opt) batch_mode:  call API 5 by 5 (def:False)
 
@@ -76,6 +77,7 @@ Warning: using batch_mode will return error only if all API keys are bad
             'application': application[:256],
             'event':       event[:1024],
             'description': description[:10000],
+            'url':         url[:512],
             'priority':    priority
         }
 
