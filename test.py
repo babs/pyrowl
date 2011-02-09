@@ -16,7 +16,7 @@ def main(keys):
         p.providerkey(pkey)
 
     p.addkey(keys)
-    res = p.push("test app", 'test event', 'test msg', batch_mode=False)
+    res = p.push("test app", 'test event', 'test msg', 'http://example.com', batch_mode=False)
     pprint(res)
     
 if __name__ == "__main__":
