@@ -66,7 +66,7 @@ takes 5 arguments:
  - (req) application: application name [256]
  - (req) event:       event name       [1024]
  - (req) description: description      [100000]
- - (req) url:         url              [512]
+ - (opt) url:         url              [512]
  - (opt) priority:    from -2 (lowest) to 2 (highest) (def:0)
  - (opt) batch_mode:  call API 5 by 5 (def:False)
 
@@ -77,9 +77,11 @@ Warning: using batch_mode will return error only if all API keys are bad
             'application': application[:256],
             'event':       event[:1024],
             'description': description[:10000],
-            'url':         url[:512],
             'priority':    priority
         }
+
+        if url:
+            datas['url'] = url[:512]
 
         if self._providerkey:
             datas['providerkey'] = self._providerkey
