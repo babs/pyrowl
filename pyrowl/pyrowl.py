@@ -65,7 +65,7 @@ takes 2 optional arguments:
 takes 5 arguments:
  - (req) application: application name [256]
  - (req) event:       event name       [1024]
- - (req) secription:  description      [100000]
+ - (req) description: description      [100000]
  - (req) url:         url              [512]
  - (opt) priority:    from -2 (lowest) to 2 (highest) (def:0)
  - (opt) batch_mode:  call API 5 by 5 (def:False)
