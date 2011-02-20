@@ -74,9 +74,9 @@ Warning: using batch_mode will return error only if all API keys are bad
  cf: http://www.prowlapp.com/api.php
 """
         datas = {
-            'application': application[:256],
-            'event':       event[:1024],
-            'description': description[:10000],
+            'application': application[:256].encode('utf8'),
+            'event':       event[:1024].encode('utf8'),
+            'description': description[:10000].encode('utf8'),
             'priority':    priority
         }
 
