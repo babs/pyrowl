@@ -40,7 +40,7 @@ Or set or change the providerkey
 
 #### Notification or Push or Add
     
-    p.push(application, event, description, (opt) priority, (opt) batch mode)
+    p.push(application, event, description, (opt) url, (opt) priority, (opt) batch mode)
 
 ##### Application
 
@@ -63,6 +63,11 @@ ex:
     Artist: blah blah
     Album:  blah blah
     Track: 18/24
+    
+##### Url
+
+The URL which should be attached to the notification.
+This will trigger a redirect when on the user's device launched, and is viewable in the notification list.
 
 ##### Priority
 
@@ -70,7 +75,7 @@ Priority goes from -2 (lowest) to 2 (highest). the default priority is 0 (normal
 
 ##### Batch mode
 
-Batch mode is a boolean value to set if you'd like to push the same message to multiple API keys 5 by 5 (as the actual verion of prowl API allows you). Thias can reduce the number of call you make to the API which are limited.
+Batch mode is a boolean value to set if you'd like to push the same message to multiple API keys 5 by 5 (as the actual verion of prowl API allows you). This can reduce the number of call you make to the API which are limited.
 
 #### Return
 
