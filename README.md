@@ -26,7 +26,7 @@ Create a Pyrowl simple instance:
 
 Both apikey(s) and providerkey are optionnal. If you'd like to add just one API key, set it as string, if you want more, just provide a list of API key strings.
 
-    p = pyrowl.Pyrowl(['apikey1','apikey2])    # multiple API keys
+    p = pyrowl.Pyrowl(['apikey1','apikey2'])    # multiple API keys
     p = pyrowl.Pyrowl("apikey1","providerkey") # 1 API key with a providerkey
 
 For more flexible usage, you can add and remove keys:
