@@ -6,10 +6,10 @@ from urllib import urlencode
 
 __version__ = "0.1"
 
-API_SERVER = 'api.prowlapp.com'
-ADD_PATH   = '/publicapi/add'
+API_SERVER = 'nma.usk.bz'
+ADD_PATH   = '/publicapi/notify'
 
-USER_AGENT="Pyrowl/v%s"%__version__
+USER_AGENT="PyNMA/v%s"%__version__
 
 def uniq_preserve(seq): # Dave Kirby
     # Order preserving
@@ -20,16 +20,16 @@ def uniq(seq):
     # Not order preserving
     return {}.fromkeys(seq).keys()
 
-class Pyrowl(object):
-    """Pyrowl(apikey=[], providerkey=None)
+class PyNMA(object):
+    """PyNMA(apikey=[], developerkey=None)
 takes 2 optional arguments:
  - (opt) apykey:      might me a string containing 1 key or an array of keys
- - (opt) providerkey: where you can store your provider key
+ - (opt) developerkey: where you can store your developer key
 """
 
-    def __init__(self, apikey=[], providerkey=None):
-        self._providerkey = None
-        self.providerkey(providerkey)
+    def __init__(self, apikey=[], developerkey=None):
+        self._developerkey = None
+        self.developerkey(developerkey)
         if apikey:
             if type(apikey) == str:
                 apikey = [apikey]
@@ -55,23 +55,23 @@ takes 2 optional arguments:
                 if key in self._apikey:
                     self._apikey.remove(k)
 
-    def providerkey(self, providerkey):
-        "Sets the provider key (and check it has the good length)"
-        if type(providerkey) == str and len(providerkey) == 40:
-            self._providerkey = providerkey
+    def developerkey(self, developerkey):
+        "Sets the developer key (and check it has the good length)"
+        if type(developerkey) == str and len(developerkey) == 48:
+            self._developerkey = developerkey
 
     def push(self, application="", event="", description="", url="", priority=0, batch_mode=False):
         """Pushes a message on the registered API keys.
 takes 5 arguments:
  - (req) application: application name [256]
- - (req) event:       event name       [1024]
- - (req) description: description      [100000]
+ - (req) event:       event name       [1000]
+ - (req) description: description      [10000]
  - (opt) url:         url              [512]
  - (opt) priority:    from -2 (lowest) to 2 (highest) (def:0)
  - (opt) batch_mode:  call API 5 by 5 (def:False)
 
 Warning: using batch_mode will return error only if all API keys are bad
- cf: http://www.prowlapp.com/api.php
+ cf: http://nma.usk.bz/api.php
 """
         datas = {
             'application': application[:256].encode('utf8'),
@@ -83,8 +83,8 @@ Warning: using batch_mode will return error only if all API keys are bad
         if url:
             datas['url'] = url[:512]
 
-        if self._providerkey:
-            datas['providerkey'] = self._providerkey
+        if self._developerkey:
+            datas['developerkey'] = self._developerkey
 
         results = {}
 
@@ -111,7 +111,7 @@ Warning: using batch_mode will return error only if all API keys are bad
         try:
             res = self._parse_reponse(resp.read())
         except Exception, e:
-            res = {'type':    "pyrowlerror",
+            res = {'type':    "pynmaerror",
                    'code':    600,
                    'message': str(e)
                    }

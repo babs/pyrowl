@@ -1,4 +1,4 @@
 #!/usr/bin/python
 
-from pyrowl import Pyrowl 
+from pynma import PyNMA 
 
