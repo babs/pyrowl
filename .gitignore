@@ -2,3 +2,7 @@
 *~
 myapikey
 myproviderkey
+build/
+dist/
+*.egg-info/
+
