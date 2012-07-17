@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from pyrowl import Pyrowl
+from pynma import PyNMA
 from pprint import pprint
 import os
 
@@ -10,10 +10,10 @@ def main(keys):
     global p
     pkey = None
     
-    p = Pyrowl()
-    if os.path.isfile("myproviderkey"):
-        pkey = open("myproviderkey",'r').readline().strip()
-        p.providerkey(pkey)
+    p = PyNMA()
+    if os.path.isfile("mydeveloperkey"):
+        dkey = open("mydeveloperkey",'r').readline().strip()
+        p.developerkey(dkey)
 
     p.addkey(keys)
     res = p.push("test app", 'test event', 'test msg', 'http://example.com', batch_mode=False)

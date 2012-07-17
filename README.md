@@ -1,30 +1,33 @@
-Pyrowl
+Pynma
 ======
 
-Pyrowl is a simple python module for the [Prowl][prowl] [API][Prowl API].
+Pynma is a simple python module for the [NotifyMyAndroid][nma] [API][NMA API].
 
-[prowl]: http://www.prowlapp.com/
-[Prowl API]: http://www.prowlapp.com/api.php
+[nma]: http://nma.usk.bz/
+[NMA API]: http://nma.usk.bz/api.php
 
-[Prowl][prowl]
+Credits to: Damien Degois (github.com/babs)
+Refactoring: Adriano Maia (adriano@usk.bz)
+
+[NotifyMyAndroid][nma]
 ---------------
-Prowl is the Growl client for the iPhone OS. Notifications from your Mac or Windows computer are sent to your iPhone or iPod touch using push. Prowl has an extensive API, which allows your scripts to integrate beautifully. (source: http://www.prowlapp.com/)
+NotifyMyAndroid is a Prowl-like application for the Android. Notifications can be sent from your application Android device using push. NMA has an extensive API, which allows your scripts to integrate beautifully. (source: http://nma.usk.bz/)
 
 ### How it works:
 First, import the module:
 
-    import pyrowl
+    import pynma
 
 #### Keys management
 
-Create a Pyrowl simple instance:
+Create a PyNMA simple instance:
 
-    p = pyrowl.Pyrowl( "apikey(s)", "providerkey")
+    p = pynma.PyNMA( "apikey(s)", "developerkey")
 
-Both apikey(s) and providerkey are optional. If you'd like to add just one API key, set it as string, if you want more, just provide a list of API key strings.
+A developerkey is optional. If you'd like to add just one API key, set it as string, if you want more, just provide a list of API key strings.
 
-    p = pyrowl.Pyrowl(['apikey1','apikey2'])   # multiple API keys
-    p = pyrowl.Pyrowl("apikey1","providerkey") # 1 API key with a providerkey
+    p = pynma.PyNMA(['apikey1','apikey2'])   # multiple API keys
+    p = pynma.PyNMA("apikey1","providerkey") # 1 API key with a providerkey
 
 For more flexible usage, you can add and remove keys:
 
@@ -33,7 +36,7 @@ For more flexible usage, you can add and remove keys:
 
 Or set or change the providerkey
 
-    p.providerkey("providerkey")
+    p.developerkey("developerkey")
 
 #### Notification or Push or Add
     
@@ -47,7 +50,7 @@ ex: my music player
 
 ##### Event
 
-Event is the event name (limited to 1024)
+Event is the event name (limited to 1000)
 
 ex: switched to next track
 
@@ -85,23 +88,23 @@ you'll have in the dict those keys:
     type: success
     code: the HTTP like code (200 if success)
     remaining: the number of API call you can to until the reset
-    resetdate: which is the date of the remaining reset (UTC)
+    resetdate: number of remaining minutes till the hourly reset of your API call limit
 
 ##### The call failed
 
 For wathever reason, you call failed, the dict key "message" will contains the erro message returned by Prowl API. You'll find those keys:
 
-    code: 400, 401, 405, 406 or 500 (depends of the error kind)
+    code: 400, 401, 402 or 500 (depends of the error kind)
     message: API error message
 
-For the code description,  please refer to [Prowl API documentation][Prowl API] for more informations
+For the code description,  please refer to [NMA API documentation][NMA API] for more informations
 
 ##### The python module encountered an unhandled problem (mostly during parsing)
 
 The return keys will be:
 
     code: 600
-    type: pyrowlerror
+    type: pynmaerror
     message: the exception message
 
 Thanks
