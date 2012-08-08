@@ -16,7 +16,7 @@ def main(keys):
         p.developerkey(dkey)
 
     p.addkey(keys)
-    res = p.push("test app", 'test event', 'test msg', 'http://example.com', batch_mode=False)
+    res = p.push("test app", 'test event', 'test msg <a href="http://www.google.com/">google</a>', 'http://example.com', batch_mode=False, html=True)
     pprint(res)
     
 if __name__ == "__main__":

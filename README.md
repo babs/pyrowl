@@ -3,15 +3,15 @@ Pynma
 
 Pynma is a simple python module for the [NotifyMyAndroid][nma] [API][NMA API].
 
-[nma]: http://nma.usk.bz/
-[NMA API]: http://nma.usk.bz/api.php
+[nma]: http://www.notifymyandroid.com/
+[NMA API]: http://www.notifymyandroid.com/api.jsp
 
 Credits to: Damien Degois (github.com/babs)
 Refactoring: Adriano Maia (adriano@usk.bz)
 
 [NotifyMyAndroid][nma]
 ---------------
-NotifyMyAndroid is a Prowl-like application for the Android. Notifications can be sent from your application Android device using push. NMA has an extensive API, which allows your scripts to integrate beautifully. (source: http://nma.usk.bz/)
+NotifyMyAndroid is a platform that allows you to delivery push notifications from virtually any application to your Android device. We offer a client application that runs on your Android device and a set of easy to use public APIs that can be integrated into your software. (source: http://www.notifymyandroid.com/)
 
 ### How it works:
 First, import the module:
@@ -40,7 +40,7 @@ Or set or change the providerkey
 
 #### Notification or Push or Add
     
-    p.push(application, event, description, (opt) url, (opt) priority, (opt) batch mode)
+    p.push(application, event, description, (opt) url, (opt) contenttype, (opt) priority, (opt) batch mode, (opt) html)
 
 ##### Application
 
@@ -69,6 +69,11 @@ ex:
 The URL which should be attached to the notification.
 This will trigger a redirect when on the user's device launched, and is viewable in the notification list.
 
+##### Content type
+
+Define the content type.
+According API, the only content type actually considered is text/html.
+
 ##### Priority
 
 Priority goes from -2 (lowest) to 2 (highest). the default priority is 0 (normal)
@@ -76,6 +81,10 @@ Priority goes from -2 (lowest) to 2 (highest). the default priority is 0 (normal
 ##### Batch mode
 
 Batch mode is a boolean value to set if you'd like to push the same message to multiple API keys 5 by 5 (as the actual verion of prowl API allows you). This can reduce the number of call you make to the API which are limited.
+
+##### HTML
+
+Set html to True is a shortcut for contenttype="text/html".
 
 #### Return
 
