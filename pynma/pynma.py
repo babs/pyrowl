@@ -1,8 +1,16 @@
 #!/usr/bin/python
 
 from xml.dom.minidom import parseString
-from httplib import HTTPSConnection
-from urllib import urlencode
+
+try:
+        from http.client import HTTPSConnection
+except ImportError:
+        from httplib import HTTPSConnection
+
+try:
+        from urllib.parse import urlencode
+except ImportError:
+        from urllib import urlencode
 
 __version__ = "0.1"
 
@@ -18,7 +26,7 @@ def uniq_preserve(seq): # Dave Kirby
 
 def uniq(seq):
     # Not order preserving
-    return {}.fromkeys(seq).keys()
+    return list({}.fromkeys(seq).keys())
 
 class PyNMA(object):
     """PyNMA(apikey=[], developerkey=None)
@@ -110,7 +118,7 @@ Warning: using batch_mode will return error only if all API keys are bad
 
         try:
             res = self._parse_reponse(resp.read())
-        except Exception, e:
+        except Exception as e:
             res = {'type':    "pynmaerror",
                    'code':    600,
                    'message': str(e)
@@ -124,12 +132,12 @@ Warning: using batch_mode will return error only if all API keys are bad
         for elem in root.childNodes:
             if elem.nodeType == elem.TEXT_NODE: continue
             if elem.tagName == 'success':
-                res = dict(elem.attributes.items())
+                res = dict(list(elem.attributes.items()))
                 res['message'] = ""
                 res['type']    = elem.tagName
                 return res
             if elem.tagName == 'error':
-                res = dict(elem.attributes.items())
+                res = dict(list(elem.attributes.items()))
                 res['message'] = elem.firstChild.nodeValue
                 res['type']    = elem.tagName
                 return res

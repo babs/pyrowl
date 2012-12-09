@@ -21,10 +21,8 @@ def main(keys):
     
 if __name__ == "__main__":
     if os.path.isfile('myapikey'):
-        keys = filter(None,
-                      open("myapikey",'r').read().split("\n")
-                      )
+        keys = [_f for _f in open("myapikey",'r').read().split("\n") if _f]
         
         main(keys)
     else:
-        print "need a file named myapikey containing one apikey per line"
+        print("need a file named myapikey containing one apikey per line")
