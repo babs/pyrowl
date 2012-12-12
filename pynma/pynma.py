@@ -74,7 +74,7 @@ takes 5 arguments:
  - (opt) html:        shortcut for contenttype=text/html
 
 Warning: using batch_mode will return error only if all API keys are bad
- cf: http://nma.usk.bz/api.php
+ cf: https://www.notifymyandroid.com/api.jsp
 """
         datas = {
             'application': application[:256].encode('utf8'),
