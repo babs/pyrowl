@@ -68,15 +68,18 @@ takes 2 optional arguments:
         if type(developerkey) == str and len(developerkey) == 48:
             self._developerkey = developerkey
 
-    def push(self, application="", event="", description="", url="", priority=0, batch_mode=False):
+    def push(self, application="", event="", description="", url="", contenttype=None, priority=0, batch_mode=False, html=False):
         """Pushes a message on the registered API keys.
 takes 5 arguments:
  - (req) application: application name [256]
  - (req) event:       event name       [1000]
  - (req) description: description      [10000]
  - (opt) url:         url              [512]
+ - (opt) contenttype: Content Type (act: None (plain text) or text/html)
  - (opt) priority:    from -2 (lowest) to 2 (highest) (def:0)
  - (opt) batch_mode:  call API 5 by 5 (def:False)
+
+ - (opt) html:        shortcut for contenttype=text/html
 
 Warning: using batch_mode will return error only if all API keys are bad
  cf: http://nma.usk.bz/api.php
@@ -90,6 +93,9 @@ Warning: using batch_mode will return error only if all API keys are bad
 
         if url:
             datas['url'] = url[:512]
+
+        if contenttype == "text/html" or html == True: # Currently only accepted content type
+            datas['content-type'] = "text/html"
 
         if self._developerkey:
             datas['developerkey'] = self._developerkey
