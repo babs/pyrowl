@@ -3,8 +3,10 @@
 from xml.dom.minidom import parseString
 from httplib import HTTPSConnection
 from urllib import urlencode
+import ssl
+import socket
 
-__version__ = "0.1"
+__version__ = "0.11"
 
 API_SERVER = 'api.prowlapp.com'
 ADD_PATH   = '/publicapi/add'
@@ -101,10 +103,18 @@ Warning: using batch_mode will return error only if all API keys are bad
         return results
         
     def callapi(self, method, path, args):
+        # add required SSL context for SNI support (recent Prowl API server changes)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+        context.verify_mode = ssl.CERT_REQUIRED
+        context.check_hostname = True
+        context.load_default_certs()
+        context.wrap_socket(s, server_hostname=API_SERVER)
+
         headers = { 'User-Agent': USER_AGENT }
         if method == "POST":
             headers['Content-type'] = "application/x-www-form-urlencoded"
-        http_handler = HTTPSConnection(API_SERVER)
+        http_handler = HTTPSConnection(API_SERVER, context = context)
         http_handler.request(method, path, urlencode(args), headers)
         resp = http_handler.getresponse()
 
